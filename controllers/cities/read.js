@@ -8,8 +8,9 @@ export default async (req, res, next) => {
             objetoDeBusqueda.admin_id = req.query.admin_id
         }
         if (req.query.city){
+        let filterCity = req.query.city.trim();
             objetoDeBusqueda.city = new RegExp(req.query.city, 'i')
-    
+            objetoDeBusqueda.city = { $regex: `^${filterCity}`, $options: "i" };
         }
         if (req.query.sort){
             objetoDeOrden.city = req.query.sort
@@ -33,3 +34,4 @@ export default async (req, res, next) => {
         next(error)
     }
 }
+
