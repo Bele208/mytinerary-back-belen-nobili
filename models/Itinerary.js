@@ -10,6 +10,8 @@ let schema = new Schema({
     tags: { type:Array, required:true},
     photo: { type:String,required:true },
 
+}, {
+    timestamps:true
 })
 
 let Itinerary = model(collection, schema);
