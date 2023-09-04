@@ -3,7 +3,7 @@ export default async (req, res, next)=>{
     try {
         let { id } = req.params
         let data = req.body
-        let one = await Itinerary.findByIdAndUpdate(
+        let one = await Itinerary.findOneAndUpdate(
          { _id:id},
          data,
          { new: true }   
