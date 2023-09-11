@@ -8,7 +8,7 @@ export default passport.use(
     {jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),secretOrKey: process.env.SECRET_KEY,},
     async (jwt_payload, done) => {
       try {
-        let user = await User.findOne({ mail: jwt_payload.mail },"-password");
+        let user = await User.findOne({ mail: jwt_payload.mail },"-_id -__v -password");
         if (user) {
             console.log("Holis");
           return done(null, user); 
