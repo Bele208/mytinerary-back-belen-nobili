@@ -10,7 +10,7 @@ import passport from '../middlewares/passport.js';
 let router = express.Router();
 
 //CREATE
-router.post('/', create)
+router.post('/', create);
 
 //READ
 router.get('/', read)

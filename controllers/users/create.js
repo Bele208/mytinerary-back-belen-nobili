@@ -1,18 +1,22 @@
 import User from "../../models/User.js";
+import { hashSync } from "bcrypt";
 
-export default async (req, res) => {
-  try {
-    let newUser = await User.create(req.body)
-    return res.status(201).json({
-      success: true,
-      message: 'user created',
-      response: newUser._id
-    })
-  } catch (error) {
-    return res.status(400).json({
-      success: false,
-      message: 'not created',
-      response: null
-    })
-  }
-}
+export default async (req, res, next) => {
+    try {
+        const plainPassword = req.body.password;
+
+        const hashedPassword = hashSync(plainPassword, 10);
+
+        req.body.password = hashedPassword;
+
+        const newUser = await User.create(req.body);
+
+        res.status(201).json({
+            success: true,
+            message: "User created successfully",
+            user: newUser,
+        });
+    } catch (error) {
+        return next(error);
+    }
+};
