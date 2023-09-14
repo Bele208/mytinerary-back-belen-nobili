@@ -15,9 +15,9 @@ let registerSchema = joi.object({
         'string.min': "Please, mail must have at least 6 characters!",
         'string.max': "Please, mail must be less than 31 characters!"
     }),
-    password: joi.string().alphanum().required().min(8).max(12).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).messages({
+    password: joi.string().alphanum().required().min(8).max(20).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).messages({
         'string.min': "Please, password must have at least 8 characters!",
-        'string.max': "Please, password must be less than 13 characters!"
+        'string.max': "Please, password must be less than 21 characters!"
     }),
     photo: joi.string().required(),
     country: joi.string().required(),
